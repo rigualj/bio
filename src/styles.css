@@ -1,15 +1,17 @@
 :root {
   color-scheme: light;
-  --bg: #f3f5f7;
+  --bg: #f4f2ee;
+  --bg-strong: #eef3f8;
   --surface: #ffffff;
-  --surface-soft: #f9fbfd;
+  --surface-soft: #fbfaf8;
   --ink: #1f2328;
-  --muted: #5f6b7a;
-  --line: #dde3e8;
+  --muted: #666666;
+  --line: #d9d9d9;
   --accent: #0a66c2;
   --accent-strong: #004182;
+  --accent-soft: #70b5f9;
   --badge: #eef3f8;
-  --shadow: 0 18px 38px rgba(15, 23, 42, 0.06);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -19,8 +21,8 @@
 html {
   min-height: 100%;
   background:
-    radial-gradient(circle at top, rgba(10, 102, 194, 0.06), transparent 30%),
-    linear-gradient(180deg, #eef3f8 0%, var(--bg) 38%, #eef2f6 100%);
+    radial-gradient(circle at top, rgba(10, 102, 194, 0.08), transparent 26%),
+    linear-gradient(180deg, var(--bg-strong) 0%, var(--bg) 24%, var(--bg) 100%);
   scroll-behavior: smooth;
 }
 
@@ -40,8 +42,9 @@ a {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(18px);
-  background: rgba(255, 255, 255, 0.88);
-  border-bottom: 1px solid rgba(221, 227, 232, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
 }
 
 .topbar-inner {
@@ -55,10 +58,27 @@ a {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 1.05rem;
   font-weight: 800;
   color: var(--accent);
   text-decoration: none;
+}
+
+.brand::before {
+  content: 'in';
+  display: inline-grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 0.3rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .topbar-nav {
@@ -68,10 +88,25 @@ a {
 }
 
 .topbar-nav a {
+  position: relative;
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
+  padding: 0.2rem 0;
+}
+
+.topbar-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.7rem;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  background: var(--accent);
+  transition: transform 180ms ease;
 }
 
 .topbar-nav a:hover,
@@ -80,10 +115,14 @@ a {
   color: var(--accent);
 }
 
+.topbar-nav a:hover::after {
+  transform: scaleX(1);
+}
+
 .page-shell {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 1.5rem 0 3rem;
+  padding: 1.75rem 0 3rem;
 }
 
 .profile-layout {
@@ -102,12 +141,25 @@ a {
 .profile-card {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 12px;
   background: linear-gradient(180deg, var(--surface) 0%, var(--surface-soft) 100%);
   box-shadow: var(--shadow);
   opacity: 0;
   transform: translateY(20px);
   animation: rise 560ms ease forwards;
+}
+
+.profile-card:not(.hero-card) {
+  position: relative;
+}
+
+.profile-card:not(.hero-card)::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 42%, transparent 100%);
 }
 
 .content-column .profile-card:nth-child(2) {
@@ -133,25 +185,26 @@ a {
 
 .hero-card {
   padding-bottom: 1.5rem;
+  background: #ffffff;
 }
 
 .hero-banner {
   height: 210px;
   background:
-    linear-gradient(120deg, rgba(0, 65, 130, 0.95), rgba(10, 102, 194, 0.82)),
-    linear-gradient(35deg, rgba(255, 255, 255, 0.1), transparent 55%);
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.16), transparent 16%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 14%, transparent 14% 28%, rgba(255, 255, 255, 0.05) 28% 42%, transparent 42% 100%),
+    linear-gradient(120deg, rgba(0, 65, 130, 0.98), rgba(10, 102, 194, 0.88));
   position: relative;
 }
 
 .hero-banner::after {
   content: '';
   position: absolute;
-  inset: auto 2rem 1.5rem auto;
-  width: 160px;
-  height: 160px;
+  inset: auto -2rem -2rem auto;
+  width: 230px;
+  height: 230px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  filter: blur(2px);
+  background: radial-gradient(circle, rgba(112, 181, 249, 0.3), rgba(112, 181, 249, 0));
 }
 
 .hero-body,
@@ -180,7 +233,7 @@ a {
   height: 152px;
   border-radius: 999px;
   border: 4px solid var(--surface);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
 }
 
 .avatar-wrap {
@@ -200,7 +253,7 @@ a {
   place-items: center;
   position: absolute;
   inset: 0;
-  background: linear-gradient(140deg, #cfdceb, #98bbde);
+  background: linear-gradient(145deg, #4e89c8, #0a66c2 55%, #004182 100%);
   color: #ffffff;
   font-size: 2.4rem;
   font-weight: 800;
@@ -290,6 +343,7 @@ a {
 .button-primary {
   background: var(--accent);
   color: #ffffff;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .button-primary:hover {
@@ -311,7 +365,7 @@ a {
   padding: 0.85rem 0.95rem;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.82);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
 }
 
 .company-mark,
@@ -374,6 +428,10 @@ a {
   line-height: 1.7;
 }
 
+.highlight-list li::marker {
+  color: var(--accent);
+}
+
 .highlight-list li + li {
   margin-top: 0.45rem;
 }
@@ -397,7 +455,7 @@ a {
 .timeline-marker {
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, #deebf7, #bfd6ee);
+  background: linear-gradient(135deg, #e6f0fb, #bfd6ee);
   color: var(--accent-strong);
 }
 
@@ -454,6 +512,7 @@ a {
 
 .sidebar-card {
   padding: 1.2rem 1.25rem 1.3rem;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
 }
 
 .featured-link {
@@ -461,6 +520,7 @@ a {
   gap: 0.25rem;
   padding: 0.9rem 0;
   text-decoration: none;
+  transition: transform 180ms ease, color 180ms ease;
 }
 
 .featured-link + .featured-link {
@@ -477,6 +537,10 @@ a {
   text-decoration: none;
   color: var(--accent-strong);
   font-weight: 700;
+}
+
+.featured-link:hover {
+  transform: translateX(2px);
 }
 
 @keyframes rise {
@@ -512,6 +576,10 @@ a {
     padding: 0.9rem 0;
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .topbar-nav a::after {
+    bottom: -0.2rem;
   }
 
   .hero-banner {
