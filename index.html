@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A modern personal bio page built with npm, Vite, and GitHub Pages."
+    />
+    <title>Bio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">GitHub Pages • npm • GitHub Actions</p>
+        <h1>Build a bio page that deploys itself.</h1>
+        <p class="lede">
+          This starter gives you a clean static site workflow: edit locally, push to
+          GitHub, and let Actions publish the site to Pages.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/new" target="_blank" rel="noreferrer">Create repo</a>
+          <a class="button secondary" href="https://docs.github.com/pages" target="_blank" rel="noreferrer">Pages docs</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="panel intro-grid" aria-labelledby="overview-title">
+          <div>
+            <p class="section-label">Overview</p>
+            <h2 id="overview-title">What this setup includes</h2>
+          </div>
+          <div class="cards">
+            <article class="card">
+              <h3>npm scripts</h3>
+              <p>Use <strong>npm run dev</strong> for local work and <strong>npm run build</strong> for production output.</p>
+            </article>
+            <article class="card">
+              <h3>Vite build</h3>
+              <p>Fast static bundling with a relative asset base so project Pages deployments work reliably.</p>
+            </article>
+            <article class="card">
+              <h3>GitHub Actions</h3>
+              <p>A deployment workflow publishes the generated <strong>dist</strong> folder to GitHub Pages on every push to <strong>main</strong>.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel process" aria-labelledby="process-title">
+          <p class="section-label">Workflow</p>
+          <h2 id="process-title">From local edit to live page</h2>
+          <ol class="steps">
+            <li>Edit content and styles in the source files.</li>
+            <li>Run a local build to verify the site.</li>
+            <li>Push to GitHub and let Actions deploy automatically.</li>
+          </ol>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
